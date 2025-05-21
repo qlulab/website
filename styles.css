@@ -4,6 +4,19 @@ body {
     margin: 0;
     padding: 0;
     color: #24292e;
+    position: relative;
+}
+
+#neural-network-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.35;
+    pointer-events: none;
+    background-color: rgba(246, 248, 250, 0.1);
 }
 
 .container {
@@ -16,6 +29,8 @@ header {
     background-color: #f6f8fa;
     border-bottom: 1px solid #e1e4e8;
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 .lab-header {
@@ -23,9 +38,23 @@ header {
     padding: 2rem 1rem;
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
+    min-height: 200px;  /* Ensure enough space for the animation */
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    overflow: hidden;  /* Contain the animation */
+}
+
+.lab-header-content {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(246, 248, 250, 0.3);  /* More transparent background */
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 800px;
 }
 
 .lab-title {
@@ -34,15 +63,17 @@ header {
     color: #24292e;
     text-align: center;
     width: 100%;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);  /* Add text shadow for better contrast */
 }
 
 .lab-subtitle {
     font-size: 1.25rem;
-    color: #586069;
+    color: #24292e;  /* Darker text for better contrast */
     margin: 0.5rem 0;
     text-align: center;
     width: 100%;
     padding: 0;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);  /* Add text shadow for better contrast */
 }
 
 .nav-bar {
@@ -324,7 +355,12 @@ footer {
     }
 
     .lab-header {
-        padding: 1.5rem 1rem;
+        min-height: 150px;
+        padding: 1rem;
+    }
+    
+    .lab-header-content {
+        padding: 1rem;
     }
     
     .lab-title {
@@ -417,4 +453,10 @@ p {
     max-width: 65ch;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Ensure content is readable over the animation */
+header, main, footer {
+    position: relative;
+    z-index: 1;
 }
