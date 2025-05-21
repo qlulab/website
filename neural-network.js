@@ -51,8 +51,8 @@ class NeuralNetworkAnimation {
             this.nodes.push({
                 x: Math.random() * this.canvas.width,
                 y: Math.random() * this.canvas.height,
-                vx: (Math.random() - 0.5) * 0.15,  // Reduced speed
-                vy: (Math.random() - 0.5) * 0.15,  // Reduced speed
+                vx: (Math.random() - 0.5) * 0.2,  // Reduced speed
+                vy: (Math.random() - 0.5) * 0.2,  // Reduced speed
                 radius: 2  // Smaller nodes
             });
         }
