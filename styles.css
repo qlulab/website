@@ -1,0 +1,420 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #24292e;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    background-color: #f6f8fa;
+    border-bottom: 1px solid #e1e4e8;
+    width: 100%;
+}
+
+.lab-header {
+    text-align: center;
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lab-title {
+    font-size: 2rem;
+    margin: 0;
+    color: #24292e;
+    text-align: center;
+    width: 100%;
+}
+
+.lab-subtitle {
+    font-size: 1.25rem;
+    color: #586069;
+    margin: 0.5rem 0;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+}
+
+.nav-bar {
+    background-color: #24292e;
+    padding: 1rem 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.nav-button {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    text-transform: capitalize;
+    min-width: 100px;
+    text-align: center;
+}
+
+.nav-button:hover {
+    background-color: #444d56;
+    text-decoration: none;
+}
+
+.nav-button.active {
+    background-color: #444d56;
+}
+
+.hero-section {
+    background-color: #f6f8fa;
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: min(800px, 90vw);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.news-section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin: 2rem 0;
+}
+
+.news-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+.news-date {
+    color: #586069;
+    font-size: 0.9rem;
+}
+
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.research-area {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.research-area:hover {
+    transform: translateY(-2px);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.team-member {
+    text-align: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.team-member:hover {
+    transform: translateY(-2px);
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.member-name {
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.member-role {
+    color: #586069;
+}
+
+.member-links {
+    margin-top: 1rem;
+}
+
+.member-links a {
+    margin: 0 0.5rem;
+    color: #0366d6;
+    text-decoration: none;
+}
+
+.publication {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.publication:hover {
+    transform: translateY(-2px);
+}
+
+.publication-title {
+    font-weight: bold;
+}
+
+.publication-authors {
+    color: #586069;
+}
+
+.publication-venue {
+    font-style: italic;
+}
+
+.publication-links {
+    margin-top: 1rem;
+}
+
+.publication-links a {
+    margin-right: 1rem;
+    color: #0366d6;
+    text-decoration: none;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.section {
+    margin: 2rem 0;
+}
+
+h2 {
+    color: #24292e;
+    border-bottom: 1px solid #e1e4e8;
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    color: #24292e;
+    margin: 2rem 0 1rem;
+}
+
+footer {
+    background-color: #24292e;
+    color: white;
+    padding: 2rem 0;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+/* Timeline for publications */
+.timeline-container {
+    position: relative;
+    margin-left: 2.5rem;
+    padding-left: 1.5rem;
+    border-left: 3px solid #e1e4e8;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -2.5rem;
+    width: 2.2rem;
+    text-align: right;
+    font-weight: bold;
+    color: #0366d6;
+    background: #fff;
+    z-index: 2;
+    padding-right: 0.5rem;
+    top: 0.8rem;
+}
+
+.timeline-container .publication {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 0.5rem;
+}
+
+.timeline-container .publication:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: -1.2rem;
+    top: 2.2rem;
+    width: 0.7rem;
+    height: calc(100% - 2.2rem);
+    border-left: 2px solid #e1e4e8;
+    z-index: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .nav-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        padding: 0.5rem;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .nav-button {
+        width: 100%;
+        margin: 0;
+        padding: 0.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container {
+        padding: 1rem;
+    }
+    
+    .hero-section {
+        padding: 2rem 1rem;
+    }
+
+    .hero-content {
+        font-size: 0.9rem;
+        line-height: 1.8;
+        padding: 0 1rem;
+    }
+
+    .lab-header {
+        padding: 1.5rem 1rem;
+    }
+    
+    .lab-title {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .lab-subtitle {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .research-area, .publication, .team-member {
+        padding: 1rem;
+    }
+
+    .research-grid, .team-grid {
+        gap: 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-button {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem;
+    }
+
+    .hero-content br {
+        display: none;  /* Remove line breaks on very small screens */
+    }
+
+    .publication-links a {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .timeline-container {
+        margin-left: 1.2rem;
+        padding-left: 0.7rem;
+    }
+    .timeline-marker {
+        left: -1.2rem;
+        width: 1.5rem;
+        font-size: 0.95rem;
+        padding-right: 0.2rem;
+    }
+}
+
+/* Base improvements */
+.hero-content {
+    max-width: min(800px, 90vw);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.research-area, .publication, .team-member {
+    transition: transform 0.2s;
+}
+
+.research-area:hover, .publication:hover, .team-member:hover {
+    transform: translateY(-2px);
+}
+
+/* Improve touch targets */
+.nav-button, .publication-links a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Better text readability */
+p {
+    max-width: 65ch;
+    margin-left: auto;
+    margin-right: auto;
+}
