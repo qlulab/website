@@ -19,6 +19,10 @@ class NeuralNetworkAnimation {
             return;
         }
         
+        // Get the link color from CSS
+        this.networkColor = getComputedStyle(document.documentElement)
+            .getPropertyValue('--link-color').trim();
+        
         this.nodes = [];
         this.connections = [];
         this.numNodes = 32;  // Reduced for smaller space
@@ -80,7 +84,7 @@ class NeuralNetworkAnimation {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             
             // Draw connections
-            this.ctx.strokeStyle = '#0366d6';
+            this.ctx.strokeStyle = this.networkColor;  // Use the CSS variable color
             this.connections.forEach(conn => {
                 const from = this.nodes[conn.from];
                 const to = this.nodes[conn.to];
@@ -100,7 +104,7 @@ class NeuralNetworkAnimation {
             });
             
             // Draw nodes
-            this.ctx.fillStyle = '#0366d6';
+            this.ctx.fillStyle = this.networkColor;  // Use the CSS variable color
             this.nodes.forEach(node => {
                 this.ctx.beginPath();
                 this.ctx.globalAlpha = 0.9;  // Adjust this value (0.9) to control node opacity
