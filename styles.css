@@ -367,7 +367,7 @@ footer {
 .timeline-container .publication {
     position: relative;
     margin-bottom: 2.5rem;
-    padding-left: 0.5rem;
+    padding-left: 2rem;
 }
 
 .timeline-container .publication:not(:last-child)::after {

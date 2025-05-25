@@ -23,18 +23,23 @@ class NeuralNetworkAnimation {
         this.networkColor = getComputedStyle(document.documentElement)
             .getPropertyValue('--link-color').trim();
         
+        // Check if device is mobile using media query
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        
+        // Set number of nodes and connections based on device type
+        this.numNodes = isMobile ? 16 : 64;
+        this.numConnections = isMobile ? 128 : 1028;
+        
         this.nodes = [];
         this.connections = [];
-        this.numNodes = 32;  // Reduced for smaller space
-        this.numConnections = 1028;  // Reduced for smaller space
         
         // Activation properties
         this.activationThreshold = 0.5;  // Connection weight threshold for activation
-        this.activationDecay = 0.99;     // Slower decay
+        this.activationDecay = 0.98;     // Slower decay
         this.propagationInterval = 3000;  // Time between activations
         this.lastActivationTime = 0;
-        this.propagationSpeed = 0.25;     // How quickly activation spreads (0-1)
-        this.activationPercentage = 0.35; // Activate 25% of nodes each time
+        this.propagationSpeed = 0.1;     // How quickly activation spreads (0-1)
+        this.activationPercentage = 0.25; // Activate 25% of nodes each time
         
         // Movement speed control
         this.movementSpeed = 0.15;
@@ -44,7 +49,17 @@ class NeuralNetworkAnimation {
         this.animate();
         
         // Update resize handler to use container dimensions
-        window.addEventListener('resize', () => this.resize());
+        window.addEventListener('resize', () => {
+            this.resize();
+            // Reinitialize nodes and connections when screen size changes
+            const wasMobile = isMobile;
+            const isNowMobile = window.matchMedia("(max-width: 768px)").matches;
+            if (wasMobile !== isNowMobile) {
+                this.numNodes = isNowMobile ? 16 : 32;
+                this.numConnections = isNowMobile ? 256 : 1024;
+                this.init();
+            }
+        });
     }
     
     resize() {
