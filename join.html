@@ -7,6 +7,62 @@
     <link rel="icon" type="image/png" href="imgs/icons/model.png">
     <link rel="stylesheet" href="styles.css">
     <script src="neural-network.js" defer></script>
+    <style>
+        .collapsible {
+            cursor: pointer;
+            padding: 1.2rem 0;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid #eaeaea;
+            transition: all 0.2s ease;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .collapsible h4 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 500;
+        }
+        .collapsible:hover {
+            color: #0366d6;
+        }
+        .collapsible:hover h4 {
+            color: #0366d6;
+        }
+        .collapsible::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #666;
+            transition: transform 0.2s ease;
+            line-height: 1;
+        }
+        .collapsible.active::after {
+            content: '−';
+            transform: none;
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+            opacity: 0;
+            padding: 0;
+        }
+        .collapsible-content.show {
+            max-height: 2000px;
+            opacity: 1;
+            padding: 1rem 0 1.5rem 0;
+        }
+        /* Add a subtle animation for the content */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .collapsible-content.show > * {
+            animation: fadeIn 0.3s ease-out;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -46,45 +102,95 @@
                     CityUHK is an English-speaking environment and a very international university, so we welcome students from all over the world!
                 <br>
                     Contact: qlu.neuro@gmail.com
+                <br><br>
 
-                <div class="research-area">
+                <div class="collapsible" onclick="toggleSection(this)">
                     <h4>Research Assistant</h4>
+                </div>
+                <div class="collapsible-content">
                     <ul>
                         <li>Ideal qualifications:
                             <ul>
                                 <li>Bachelor's degree in Computer Science, Neuroscience, Psychology, or related fields</li>
-                                <!-- <li>Interest in getting a PhD with me</li> -->
                                 <li>Interest/experience in human memory research</li>
                                 <li>Strong programming skills (Python preferred)</li>
-                                <li>Experience with human neuroimaging/behavioral experiments or machine learning is a plus</li>
+                                <li>Experience with human neuroimaging / behavioral experiments or machine learning / computational modeling is a plus</li>
                             </ul>
                         </li>
+                        <li> To apply, please send me the following:
+                        <ul>
+                            <li>Tell me about your research experience (if any) + why you would like to work with me!</li>
+                            <li>CV/Resume</li>
+                            <ul>
+                                <li>please indicate your GPA (e.g. 3.5/4.0, 85/100, etc.) -- this is related with the CityUHK's entrance requirement</li>
+                                <li>please highlight any relevant research experience you have</li>
+                            </ul>
+                            <li>Please indicate your ideal start date and whether there is any flexibility with the start date</li>
+                            <li>Your github repo or other code samples</li>
+                            <li>Contact info for 1 references</li>
+                        </ul>
                     </ul>
                 </div>
 
-                <div class="research-area">
+                <div class="collapsible" onclick="toggleSection(this)">
                     <h4>Ph.D. Student</h4>
+                </div>
+                <div class="collapsible-content">
                     <ul>
-                        <li>Ideal qualifications:
-                            <ul>
-                                <li>Bachelor's or Master's degree in Computer Science, Neuroscience, Psychology, or related fields</li>
-                                <li>Interest/experience in human memory research</li>
-                                <li>Strong programming skills (Python preferred)</li>
-                                <li>Research experience in human neuroimaging / behavioral experiments or machine learning / computational modeling</li> 
-                            </ul>
-                        </li>
-                        <br>
                         I admit students via <a href='https://www.cityu.edu.hk/neuro/edu/rpg.htm'> the Neuroscience PhD program</a>.
                         The <a href="https://www.cityu.edu.hk/pg/research-degree-programmes">CityU PhD program info page</a> has a lot of information, 
                         including application deadlines, additional funding/scholarship opportunities. 
                         <strong>Please read the info pages carefully </strong> and make sure you are fully aware of the "Entrance Requirements" of the program. 
                         <br><br>
                         CityUHK has joint PhD programs with many universities in mainland and across the globe. Let me know if you are interested!
+                        <br><br>
+
+                        <li>Ideal qualifications:
+                            <ul>
+                                <li>Bachelor's or Master's degree in Computer Science, Neuroscience, Psychology, or related fields</li>
+                                <li>Research experience in human memory</li>
+                                <li>Strong programming skills (Python preferred)</li>
+                                <li>Research experience in human neuroimaging / behavioral experiments or machine learning / computational modeling</li> 
+                            </ul>
+                        </li>
+                        <li> To apply, please send me the following:
+                        <ul>
+                            <li>Tell me about your research experience + why you would like to work with me!</li>
+                            <li>CV/Resume</li>
+                            <ul>
+                                <li>please indicate your GPA (e.g. 3.5/4.0, 85/100, etc.) -- this is related with the CityUHK's entrance requirement</li>
+                                <li>please highlight any relevant research experience you have</li>
+                            </ul>
+                            <li>Please indicate your ideal start date and whether there is any flexibility with the start date</li>
+                            <li>Your github repo or other code samples</li>
+                            <li>Contact info for 1-2 references</li>
+                        </ul>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="research-area">
+                <div class="collapsible" onclick="toggleSection(this)">
+                    <h4>Visiting Ph.D. Students</h4>
+                </div>
+                <div class="collapsible-content">
+                    Students who are currently enrolled in a PhD program are encouraged to apply to visit the lab! 
+                    Please take a look at the <a href="https://www.cityu.edu.hk/pg/visiting/visiting-research-students">CityU visiting research students program page</a> for more info. 
+                    <ul>
+                        <li>Ideal qualifications:
+                            <ul>
+                                <li>Potential synergy with the lab's research directions</li> 
+                                <li>Please indicate your ideal start date and whether there is any flexibility with the start date</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="collapsible" onclick="toggleSection(this)">
                     <h4>Postdoctoral Researcher</h4>
+                </div>
+                <div class="collapsible-content">
+                    I'm looking for a postdoc to collabrate on various projects!
                     <ul>
                         <li>Ideal qualifications:
                             <ul>
@@ -93,24 +199,22 @@
                                 <li>Relevant publication record</li>
                             </ul>
                         </li>
-                    </ul>
-                </div>
-
-                <h3>How to Apply</h3>
-                <div class="research-area">
-                    To apply, please send the following information (if applicable) to qlu.neuro@gmail.com:
-                    <ul>
-                        <li>A brief description of what would you like to work on with me!</li>
-                        <li>CV/Resume</li>
+                        <li> To apply, please send me the following:
                         <ul>
-                            <li>please indicate your GPA (e.g. 3.5/4.0, 85/100, etc.) -- this is related with the CityUHK's entrance requirement</li>
-                            <li>please highlight any relevant research experience you have</li>
+                            <li>A brief statement of ...</li>
+                            <ul>
+                                <li>your past research experience</li>
+                                <li>your future research plans</li>
+                                <li>why you would like to work with me</li>
+                            </ul>
+                            <li>CV/Resume</li>
+                            <li>Please indicate your ideal start date and whether there is any flexibility with the start date</li>
+                            <li>Contact info for 2-3 references</li>
                         </ul>
-                        <li>Please indicate your ideal start date and whether there is any flexibility with the start date</li>
-                        <li>Your github repo or other code samples</li>
                     </ul>
-
                 </div>
+
+
 
                 <h3>Lab culture / Lab manual</h3>
                 <div class="research-area">
@@ -129,5 +233,33 @@
             <p>© 2025 Qihong Lu. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        function toggleSection(element) {
+            // Toggle active class on the clicked header
+            element.classList.toggle('active');
+            
+            // Get the content div that follows the header
+            const content = element.nextElementSibling;
+            
+            // Toggle the show class on the content
+            content.classList.toggle('show');
+            
+            // If this section is being opened, close others
+            if (content.classList.contains('show')) {
+                // Get all other content sections
+                const allContents = document.querySelectorAll('.collapsible-content');
+                const allHeaders = document.querySelectorAll('.collapsible');
+                
+                // Close all other sections
+                allContents.forEach((section, index) => {
+                    if (section !== content) {
+                        section.classList.remove('show');
+                        allHeaders[index].classList.remove('active');
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>
