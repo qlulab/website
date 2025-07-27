@@ -74,7 +74,7 @@
         <div class="container">
             <section class="section">
                 <!-- <h2>Publications</h2> -->
-                
+
 
                 <div class="pub-nav">
                     <div class="pub-nav-container">
@@ -93,13 +93,12 @@
                     <div class="publication">
                         <div class="timeline-marker">2025</div>
                         <div class="publication-title">Towards Large Language Models with Human-Like Episodic Memory.</div>
-                        <div class="publication-authors">Dong, V. C., <strong>Lu, Q.</strong>, Norman, K. A. \& Michelmann, S. </div>
+                        <div class="publication-authors">Dong, V. C., <strong>Lu, Q.</strong>, Norman, K. A. & Michelmann, S. </div>
                         <div class="publication-venue">Trends in Cognitive Sciences, 2025.</div>
                         <div class="publication-links">
-                            <a href="https://doi.org/10.1016/j.tics.2025.06.016">[PDF]</a>
-                            <!-- <a href="#">[Code]</a> -->
+                            <a href="https://www.sciencedirect.com/science/article/pii/S1364661325001792?dgcid=author">[PDF]</a>
                         </div>
-                    </div>                        
+                    </div>
 
                     <div class="publication">
                         <div class="timeline-marker">2024</div>
@@ -446,7 +445,7 @@
                     document.querySelectorAll('.pub-nav-button').forEach(button => {
                         button.addEventListener('click', function(e) {
                             e.preventDefault();
-                            
+
                             // Update active state
                             document.querySelectorAll('.pub-nav-button').forEach(btn => {
                                 btn.classList.remove('active');
@@ -465,11 +464,11 @@
 
                             // Get the header element
                             const header = targetSection.querySelector('h3');
-                            
+
                             // Calculate the position to scroll to
                             const headerPosition = header.getBoundingClientRect().top + window.pageYOffset;
                             const navHeight = document.querySelector('.pub-nav').offsetHeight;
-                            
+
                             // Scroll to position, accounting for the navigation bar height
                             window.scrollTo({
                                 top: headerPosition - navHeight,
@@ -490,4 +489,3 @@
     </footer>
 </body>
 </html>
-
