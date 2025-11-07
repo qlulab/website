@@ -370,17 +370,6 @@ footer {
     padding-left: 2rem;
 }
 
-.timeline-container .publication:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: -1.2rem;
-    top: 2.2rem;
-    width: 0.7rem;
-    height: calc(100% - 2.2rem);
-    border-left: 2px solid #e1e4e8;
-    z-index: 1;
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .nav-container {
