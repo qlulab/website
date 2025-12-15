@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Digital name card" />
+  <title>Digital Name Card</title>
+
+  <style>
+    :root{
+      --bg: #f6f8fa;
+      --card: rgba(255,255,255,0.95);
+      --card-border: #e1e4e8;
+      --text: #24292e;
+      --muted: #586069;
+      --link: #009EFF;
+      --shadow: 0 1px 3px rgba(0,0,0,0.1);
+      --radius: 8px;
+      --pad: 20px;
+      --maxw: 720px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background: var(--bg);
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      line-height: 1.6;
+    }
+
+    .wrap{
+      width: 100%;
+      max-width: var(--maxw);
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+
+    .top{
+      padding: calc(var(--pad) + 4px) var(--pad);
+      display: grid;
+      gap: 10px;
+    }
+
+    .header-with-logo{
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo-container{
+      flex-shrink: 0;
+    }
+
+    .university-logo{
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .header-text{
+      flex: 1;
+      min-width: 0;
+    }
+
+    .name{
+      font-size: clamp(26px, 3.6vw, 36px);
+      font-weight: 760;
+      letter-spacing: 0.2px;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    .title{
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 2.1vw, 18px);
+      line-height: 1.35;
+    }
+
+    .divider{
+      height: 1px;
+      background: #e1e4e8;
+    }
+
+    .content{
+      padding: var(--pad);
+      display: grid;
+      gap: 14px;
+    }
+
+    .row{
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #e1e4e8;
+      background: #ffffff;
+      transition: transform 0.2s;
+    }
+    
+    .row:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .label{
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .value{
+      min-width: 0;
+      overflow-wrap: anywhere;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    a{
+      color: var(--link);
+      text-decoration: none;
+    }
+    a:hover{ text-decoration: underline; }
+
+    .mono{
+      font-family: var(--mono);
+      font-size: 15px;
+    }
+
+    .btn{
+      border: 1px solid #e1e4e8;
+      background: #f6f8fa;
+      color: var(--text);
+      padding: 9px 11px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      line-height: 1;
+      transition: transform 0.08s ease, background 0.12s ease;
+      white-space: nowrap;
+    }
+    .btn:hover{ 
+      background: #6CACE4;
+      color: white;
+      border-color: #6CACE4;
+    }
+    .btn:active{ transform: scale(0.98); }
+    .btn:focus-visible{
+      outline: 2px solid #009EFF;
+      outline-offset: 2px;
+    }
+
+    .footer{
+      padding: 14px var(--pad) 18px;
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: #24292e;
+      border: 1px solid #e1e4e8;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .toast.show{
+      opacity: 1;
+      transform: translateX(-50%) translateY(-4px);
+    }
+
+    /* Language tabs */
+    .lang-tabs{
+      display: flex;
+      gap: 0;
+      background: #e1e4e8;
+      border-radius: 8px 8px 0 0;
+      padding: 4px;
+      justify-content: center;
+    }
+
+    .lang-tab{
+      flex: 1;
+      max-width: 120px;
+      padding: 8px 16px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 14px;
+      font-family: var(--sans);
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .lang-tab:hover{
+      background: rgba(108, 172, 228, 0.15);
+      color: var(--text);
+    }
+
+    .lang-tab.active{
+      background: white;
+      color: var(--text);
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    }
+
+    /* Hide inactive language content */
+    [data-lang]:not([data-lang=""]) {
+      display: none;
+    }
+
+    body.lang-zh [data-lang="zh"] {
+      display: inline;
+    }
+
+    body.lang-en [data-lang="en"] {
+      display: inline;
+    }
+
+    body.lang-zh [data-lang="en"] {
+      display: none;
+    }
+
+    body.lang-en [data-lang="zh"] {
+      display: none;
+    }
+
+    /* Mobile: stack labels */
+    @media (max-width: 520px){
+      .row{
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+          "value btn"
+          "label btn";
+        align-items: start;
+      }
+      .label{ grid-area: label; margin-top: 6px; }
+      .value{ grid-area: value; }
+      .btn{ grid-area: btn; }
+      
+      .header-with-logo{
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+      }
+      
+      .university-logo{
+        width: 70px;
+        height: 70px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="card" role="region" aria-label="Digital name card">
+      <!-- Language tabs -->
+      <div class="lang-tabs">
+        <button class="lang-tab active" onclick="switchLanguage('en')" data-lang-btn="en">English</button>
+        <button class="lang-tab" onclick="switchLanguage('zh')" data-lang-btn="zh">中文</button>
+      </div>
+
+      <header class="top">
+        <!-- ====== EDIT THESE FIELDS ====== -->
+        <!-- <div class="header-with-logo">
+          <div class="logo-container">
+            <img src="imgs/icons/cityu-logo-small.png" alt="City University of Hong Kong Logo" class="university-logo">
+          </div>
+          <div class="header-text"> -->
+            <h1 class="name">
+              <span data-lang="en">Qihong Lu</span>
+              <span data-lang="zh">吕其鸿</span>
+            </h1>
+            <p class="title">
+              <span data-lang="en">Presidential Assistant Professor</span>
+              <span data-lang="zh">校长助理教授</span>
+              <br>
+              <span data-lang="en">Department of Neuroscience</span>
+              <span data-lang="zh">神经科学系</span>
+              <br>
+              <span data-lang="en">City University of Hong Kong</span>
+              <span data-lang="zh">香港城市大学</span>
+            </p>
+          <!-- </div>
+        </div> -->
+        <!-- ============================== -->
+      </header>
+
+      <div class="divider"></div>
+
+      <div class="content">
+        <!-- Lab website -->
+        <div class="row">
+          <div class="label">
+            <span data-lang="en">Lab</span>
+            <span data-lang="zh">实验室</span>
+          </div>
+          <div class="value">
+            <a href="https://qlulab.github.io/website/" target="_blank" rel="noopener noreferrer">
+                <span data-lang="en">Human & Machine Memory Lab</span>
+                <span data-lang="zh">人类与机器记忆实验室</span>
+            </a>
+          </div>
+          <span aria-hidden="true"></span>
+        </div>
+
+        <!-- University profile -->
+        <!-- <div class="row">
+          <div class="label">Profile</div>
+          <div class="value">
+            <a href="https://www.cityu.edu.hk/neuro/profile/qihonglu.htm" target="_blank" rel="noopener noreferrer">
+              University profile page
+            </a>
+          </div>
+          <span aria-hidden="true"></span>
+        </div> -->
+
+        <!-- Email -->
+        <div class="row">
+          <div class="label">
+            <span data-lang="en">Email</span>
+            <span data-lang="zh">邮箱</span>
+          </div>
+          <div class="value mono" id="emailText">qihong.lu@cityu.edu.hk
+        </div>
+          <button class="btn" type="button" onclick="copyText('emailText')">
+            <span data-lang="en">Copy</span>
+            <span data-lang="zh">复制</span>
+          </button>
+        </div>
+
+        <!-- WeChat -->
+        <div class="row">
+          <div class="label">
+            <span data-lang="en">WeChat</span>
+            <span data-lang="zh">微信</span>
+          </div>
+          <div class="value mono" id="wechatText">lvqihong002</div>
+          <button class="btn" type="button" onclick="copyText('wechatText')">
+            <span data-lang="en">Copy</span>
+            <span data-lang="zh">复制</span>
+          </button>
+        </div>
+      </div>
+
+
+
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // Language switching
+    let currentLang = 'en';
+
+    function switchLanguage(lang) {
+      currentLang = lang;
+      document.body.className = `lang-${lang}`;
+      
+      // Update active tab
+      document.querySelectorAll('.lang-tab').forEach(tab => {
+        if (tab.getAttribute('data-lang-btn') === lang) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+
+      // Save preference
+      localStorage.setItem('preferredLanguage', lang);
+    }
+
+    // Load saved language preference on page load
+    (function(){
+      const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+      switchLanguage(savedLang);
+    })();
+
+    // Optional: show a subtle last-updated line
+    (function(){
+      const el = document.getElementById('lastUpdated');
+      if (el) {
+        const d = new Date();
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth()+1).padStart(2,'0');
+        const dd = String(d.getDate()).padStart(2,'0');
+        el.textContent = `Updated: ${yyyy}-${mm}-${dd}`;
+      }
+    })();
+
+    async function copyText(elementId){
+      const text = document.getElementById(elementId)?.textContent?.trim() || "";
+      if(!text) return;
+
+      const messages = {
+        en: `Copied: ${text}`,
+        zh: `已复制: ${text}`
+      };
+
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast(messages[currentLang]);
+      }catch(e){
+        // Fallback for older browsers
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly','');
+        ta.style.position = 'fixed';
+        ta.style.top = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(messages[currentLang]);
+      }
+    }
+
+    let toastTimer = null;
+    function showToast(msg){
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
+    }
+  </script>
+</body>
+</html>
