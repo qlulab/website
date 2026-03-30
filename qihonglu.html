@@ -58,13 +58,17 @@
 
     .header-with-logo{
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 16px;
+      justify-content: space-between;
       flex-wrap: wrap;
     }
 
     .logo-container{
       flex-shrink: 0;
+      display: flex;
+      align-items: flex-start;
+      margin-left: 24px;
     }
 
     .university-logo{
@@ -76,6 +80,7 @@
     .header-text{
       flex: 1;
       min-width: 0;
+      text-align: left;
     }
 
     .name{
@@ -310,14 +315,16 @@
       .btn{ grid-area: btn; }
       
       .header-with-logo{
-        flex-direction: column;
-        text-align: center;
+        flex-direction: row; /* keep name/title left and logo right */
+        text-align: left;
         gap: 12px;
+        flex-wrap: nowrap; /* prevent the whole header from stacking */
+        justify-content: space-between;
       }
       
       .university-logo{
-        width: 70px;
-        height: 70px;
+        width: 56px;
+        height: 56px;
       }
     }
   </style>
@@ -334,16 +341,13 @@
 
       <header class="top">
         <!-- ====== EDIT THESE FIELDS ====== -->
-        <!-- <div class="header-with-logo">
-          <div class="logo-container">
-            <img src="imgs/icons/cityu-logo-small.png" alt="City University of Hong Kong Logo" class="university-logo">
-          </div>
-          <div class="header-text"> -->
-            <h1 class="name">
+        <div class="header-with-logo">
+          <div class="header-text">
+            <h1 class="name" style="text-align: left; margin-bottom: 0.5em;">
               <span data-lang="en">Qihong Lu</span>
               <span data-lang="zh">吕其鸿</span>
             </h1>
-            <p class="title">
+            <p class="title" style="text-align: left; margin-top: 0;">
               <span data-lang="en">Presidential Assistant Professor</span>
               <span data-lang="zh">校长助理教授</span>
               <br>
@@ -353,8 +357,11 @@
               <span data-lang="en">City University of Hong Kong</span>
               <span data-lang="zh">香港城市大学</span>
             </p>
-          <!-- </div>
-        </div> -->
+          </div>
+          <div class="logo-container">
+            <img src="imgs/icons/lab-logo-b-w.jpg" alt="City University of Hong Kong Logo" class="university-logo">
+          </div>
+        </div>
         <!-- ============================== -->
       </header>
 
@@ -407,7 +414,7 @@
             <span data-lang="en">WeChat</span>
             <span data-lang="zh">微信</span>
           </div>
-          <div class="value mono" id="wechatText">lvqihong002</div>
+          <div class="value mono" id="wechatText">lu-qihong</div>
           <button class="btn" type="button" onclick="copyText('wechatText')">
             <span data-lang="en">Copy</span>
             <span data-lang="zh">复制</span>
